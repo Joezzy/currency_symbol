@@ -23,10 +23,15 @@ import 'package:currency_symbols/currency_symbols.dart';
 
 
 Usage:
+```
 
 String myCurrencySymbol=cSymbol("NGN");
+```
+
 OR
 Within your UI Text you can add as:
+
+```
 
 class  extends StatelessWidget {
   const ({Key? key}) : super(key: key);
@@ -38,5 +43,8 @@ class  extends StatelessWidget {
             );
   }
 }
+
+```
+
 
 # currency_symbol

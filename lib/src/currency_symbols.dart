@@ -1,7 +1,8 @@
 
-String cSymbol(String currencyCode){
-  String symbol;
+import 'package:intl/intl.dart';
 
+String cSymbol2(String currencyCode,double amount,[int numberOfDecimal=0]){
+  String symbol="";
   if(currencyCode=="USD") {
 //dollar
     symbol = "\u0024";
@@ -54,9 +55,9 @@ String cSymbol(String currencyCode){
     //Czech Koruna
     symbol = "\u004B"+"\u010D";
   }
-  else if(currencyCode=="LKR") {
+  else if(currencyCode=="KRW") {
     //South-Korean Won
-    symbol = "\u20A8";
+    symbol = "\u20A9";
   }
   else if(currencyCode=="PHP") {
     //Philippine Peso
@@ -95,6 +96,9 @@ String cSymbol(String currencyCode){
   }
 
 
-  return symbol;
+  String numberOutput= NumberFormat.currency(
+      decimalDigits: numberOfDecimal==null?2:numberOfDecimal).format(amount).toString();
+  numberOutput=numberOutput.substring(3);
+  return symbol+numberOutput;
 
 }

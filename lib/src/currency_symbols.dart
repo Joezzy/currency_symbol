@@ -1,104 +1,36 @@
-
 import 'package:intl/intl.dart';
 
-String cSymbol2(String currencyCode,double amount,[int numberOfDecimal=0]){
-  String symbol="";
-  if(currencyCode=="USD") {
-//dollar
-    symbol = "\u0024";
-  }
+String cSymbol2(String currencyCode, double amount, [int numberOfDecimal = 0]) {
+  final Map<String, String> currencies = <String, String>{
+    "USD": "\u0024",
+    "NGN": "\u20A6",
+    "EUR": "\u20AC",
+    "GBP": "\u00A3",
+    "GHS": "\u20A6",
+    "JPY": "\u00A5",
+    "AFN": "\u060B",
+    "CNY": "\u00A5",
+    "ILS": "\u20AA",
+    "INR": "\u20B9",
+    "ZAR": "\u0052",
+    "RUB": "py" + "\u0431",
+    "CZK": "\u004B" + "\u010D",
+    "KRW": "\u20A9",
+    "PHP": "\u20B1",
+    "PLN": "\u007A" + "\u0142",
+    "THB": "\u0E3F",
+    "VND": "\u20AB",
+    "GHC": "\u20B5",
+    "BTC": "\u20BF",
+    "AMD": "\u058F",
+  };
 
-  else if(currencyCode=="NGN") {
-    //Naira
-    symbol = "\u20A6";
-  }
+  final String symbol = currencies[currencyCode] ?? "";
 
-  else if(currencyCode=="EUR") {
-    symbol = "\u20AC";
-  }
-  else if(currencyCode=="GBP") {
-    symbol = "\u00A3";
-  }
+  final String numberOutput =
+      NumberFormat.currency(decimalDigits: numberOfDecimal)
+          .format(amount)
+          .substring(3);
 
-  else if(currencyCode=="GHS") {
-    symbol = "\u20A6";
-  }
-  else if(currencyCode=="JPY") {
-    //japanese yen
-    symbol = "\u00A5";
-  }
-  else if(currencyCode=="AFN") {
-    //Afghani
-    symbol = "\u060B";
-  }
-  else if(currencyCode=="CNY") {
-    //chinese yuan
-    symbol = "\u00A5";
-  }
-  else if(currencyCode=="ILS") {
-    //	Israeli New Shekel
-    symbol = "\u20AA";
-  }
-  else if(currencyCode=="INR") {
-    //Australian dollar
-    symbol = "\u20B9";
-  }
-  else if(currencyCode=="ZAR") {
-    //S/A rand
-    symbol = "\u0052";
-  }
-  else if(currencyCode=="RUB") {
-    //russian rouble
-    symbol = "py"+"\u0431";
-  }
-  else if(currencyCode=="CZK") {
-    //Czech Koruna
-    symbol = "\u004B"+"\u010D";
-  }
-  else if(currencyCode=="KRW") {
-    //South-Korean Won
-    symbol = "\u20A9";
-  }
-  else if(currencyCode=="PHP") {
-    //Philippine Peso
-    symbol = "\u20B1";
-  }
-  else if(currencyCode=="PLN") {
-    //Polish Zloty
-    symbol = "\u007A"+"\u0142";
-  }  else if(currencyCode=="THB") {
-    //Thai Baht
-    symbol = "\u0E3F";
-  }  else if(currencyCode=="VND") {
-    //Vietnamese Dong
-    symbol = "\u20AB";
-  }
-
-  else if(currencyCode=="GHC") {
-    //GHANA Cedi
-    symbol = "\u20B5";
-  }
-
-
-  else if(currencyCode=="AFN") {
-    //Afghnai
-    symbol = "\u060B";
-  }
-
-  else if(currencyCode=="BTC") {
-    //GHANA Cedi
-    symbol = "\u20BF";
-  }
-
-  else if(currencyCode=="AMD") {
-    //ARMENIAN DRAM SIGN
-    symbol = "\u058F";
-  }
-
-
-  String numberOutput= NumberFormat.currency(
-      decimalDigits: numberOfDecimal==null?2:numberOfDecimal).format(amount).toString();
-  numberOutput=numberOutput.substring(3);
-  return symbol+numberOutput;
-
+  return symbol + numberOutput;
 }
